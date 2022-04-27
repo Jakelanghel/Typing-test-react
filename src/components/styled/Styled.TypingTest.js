@@ -26,7 +26,7 @@ export const StyledTypingTest = styled.div `
     }
 
     .container-actions {
-        width: 500px;
+        max-width: 600px;
         display: flex;
         justify-content: space-between;
         align-items: center;

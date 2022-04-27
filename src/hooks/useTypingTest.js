@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 const useTypingTest = () => {
-  const START_TIME = 2;
+  const START_TIME = 60;
 
   const [testData, setTestData] = useState({
     timeRemaining: START_TIME,
@@ -33,7 +33,7 @@ const useTypingTest = () => {
         ...prevState,
         timeRemaining: 0,
         isTimerRunning: false,
-        wordCount: count,
+        wordCount: `${count} words per minute`,
       };
     });
   };
