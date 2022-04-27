@@ -15,6 +15,7 @@ const useTypingTest = () => {
   const startGame = () => {
     setTestData((prevState) => {
       return {
+        ...prevState,
         timeRemaining: START_TIME,
         isTimerRunning: true,
         usrInput: "",
@@ -25,16 +26,28 @@ const useTypingTest = () => {
   };
 
   const endGame = () => {
+    textBoxRef.current.disabled = true;
     const count = getWordCount();
+    setTestData((prevState) => {
+      return {
+        ...prevState,
+        timeRemaining: 0,
+        isTimerRunning: false,
+        wordCount: count,
+      };
+    });
+  };
+
+  const resetGame = () => {
     setTestData((prevState) => {
       return {
         timeRemaining: START_TIME,
         isTimerRunning: false,
         usrInput: "",
-        wordCount: count,
+        wordCount: 0,
       };
     });
-  };
+  }
 
   const getWordCount = () => {
     const wordsArr = testData.usrInput.trim().split(" ");
@@ -59,7 +72,7 @@ const useTypingTest = () => {
     }
   }, [testData.timeRemaining, testData.isTimerRunning]);
 
-  return { testData, textBoxRef, startGame, endGame, getWordCount, getInput }
+  return { testData, textBoxRef, startGame, endGame, resetGame, getWordCount, getInput }
 };
 
 export default useTypingTest
